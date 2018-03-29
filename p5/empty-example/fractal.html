@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="../p5.min.js"></script>
+    <script src="../addons/p5.dom.min.js"></script>
+    <script src="../addons/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+	  <div id="canvas"></div><br>
+	<input type="range" id="range" oninput="num=this.value;output.value=this.value;" min="0" max="600" />
+	  <button onclick="RECT=true;CIRCLE=false;range.max=100;">RECT</button>
+	  <button onclick="RECT=false;CIRCLE=true;range.max=600;">CIRCLE</button><br>
+	  <output id="output"></output>
+  </body>
+    <script>
+		//In the Name of GOD
+		//By Hosein Movahedi Maram
+		//In Noroz holiday
+		var num = prompt("Enter your number for num of circle");
+		var range = document.getElementById("range");
+		var output = document.getElementById("output");
+		//size var
+		var x = 500;
+		var y = 300;
+		var r = 200;
+		var RECT = true, CIRCLE = false;
+        function setup() {
+            var canvas = createCanvas(1000, 600);
+			canvas.parent("canvas");
+			background(0);
+			//noStroke();
+        }
+        function draw() {
+			fill(255,100,100);
+			background(0);
+			if(RECT){
+				rectDraw(x-r/2, y-r/2, r, 0);
+			}
+			if(CIRCLE){
+            	cirDraw(x, y, r, 0);
+			}
+          
+        }
+		
+		function cirDraw(x, y, r, dir){
+			if(x < 1 || y < 1 || r < 200/num){
+				return 1;
+			}
+			else{
+				ellipse(x, y, r);
+				if(dir != 3){
+					cirDraw(x-3*r/4, y, r/2, 1);
+				}
+				if(dir != 4){
+					cirDraw(x, y-3*r/4, r/2, 2);
+				}
+				if(dir != 1){
+					cirDraw(x+3*r/4, y, r/2, 3);
+				}
+				if(dir != 2){
+					cirDraw(x, y+3*r/4, r/2, 4);
+				}
+			}
+			
+		}
+		function rectDraw(x, y, r, dir){
+			if(x < 1 || y < 1 || r < 200/num){
+				return 1;
+			}
+			else{
+				rect(x, y, r, r);
+				if(dir != 3){
+					rectDraw(x-r/2, y-r/2, r/2, 1);
+				}
+				if(dir != 4){
+					rectDraw(x+r, y-r/2, r/2, 2);
+				}
+				if(dir != 1){
+					rectDraw(x+r, y+r, r/2, 3);
+				}
+				if(dir != 2){
+					rectDraw(x-r/2, y+r, r/2, 4);
+				}
+			}
+			
+		}
+    </script>
+</html>

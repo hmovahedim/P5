@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="../p5.min.js"></script>
+    <script src="../addons/p5.dom.min.js"></script>
+    <script src="../addons/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+	  
+  </head>
+  <body>
+  </body>
+    <script>
+		var div;
+        function setup() {
+            createCanvas(600, 600);
+			div = createDiv("X" + mouseX + "</br>" + "Y" + mouseY);
+        }
+        function draw() {
+			background(255);
+            line(0, mouseY, width, mouseY);
+            line(mouseX, 0, mouseX, height);
+			div.remove();
+			div = createDiv("X" + mouseX + "</br>" + "Y" + mouseY);
+			div.style("background", "gray");
+			div.style("border-radius", "5px");
+			div.style("height", "50px");
+			div.style("width", "60px");
+			div.style("text-align", "CENTER");
+			div.position(mouseX + 5,mouseY - 40);
+          
+        }
+    </script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="../p5.min.js"></script>
+    <script src="../addons/p5.dom.min.js"></script>
+    <script src="../addons/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+  <script>
+  var ballX = 300;
+  var ballY = 200;
+  var speedX = 4;
+  var speedY = -3;
+  function setup(){
+    createCanvas(600,600);
+  }
+  function draw(){
+    r = random(0,255);
+    g = random(0,255);
+    b = random(0,255);
+    fill(r, g, b);
+    noStroke();
+    background(1);
+    ellipse(ballX,ballY,50,50);
+    if (ballX > width || ballX < 0){
+      speedX = -speedX;
+    }
+    if (ballY > height || ballY < 0){
+      speedY  = - speedY;
+    }
+    ballX += speedX;
+    ballY += speedY;
+  }
+  </script>
+</html>

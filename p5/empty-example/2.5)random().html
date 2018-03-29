@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="../p5.min.js"></script>
+    <script src="../addons/p5.dom.min.js"></script>
+    <script src="../addons/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+  </body>
+    <script>
+        function setup() {
+            createCanvas(600, 600);
+			background(0);
+        }
+        function draw() {
+            circleX = random(0, width);
+			circleY = random(0, height);
+			scale = random(10, 50);
+			r = random(0,255);
+			g = 0;
+			b = random(0,190);
+			noStroke();
+			fill(r, g, b, 100);
+			ellipse(circleX, circleY, scale, scale);
+          
+        }
+		
+    </script>
+</html>

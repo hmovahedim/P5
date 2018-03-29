@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>bubble</title>
+<script src="../p5.min.js"></script>
+<script src="../addons/p5.dom.min.js"></script>
+<script src="../addons/p5.sound.min.js"></script>
+</head>
+<button onclick="changeFill(this)">fill</button>
+<button onclick="changeColor(this)">change color</button>
+<button onclick="changeSize(this)">change size</button>
+<button onclick="deletes()">delete</button>
+<div id='div_counter'>1</div>
+<body>
+</body>
+<script>
+alert("Drag mouse to draw bubble ");
+alert(", use button to setting if not working press again");
+let bubbles = [];
+c = 1;
+var Fill = 'false';
+var color = 'false';
+var size = 'false';
+function changeFill(x){
+	Fill = !Fill;
+	if (Fill){
+		x.innerHTML = 'no fill';
+	}
+	else{
+		x.innerHTML = 'fill';
+	}
+}
+function changeColor(x){
+	color = !color;
+	if (color){
+		x.innerHTML = 'not change color';
+	}
+	else{
+		x.innerHTML = 'change color';
+	}
+}
+function changeSize(x){
+	size = !size;
+	if (size){
+		x.innerHTML = 'not change size';
+	}
+	else{
+		x.innerHTML = 'change size';
+	}
+}
+function deletes(){
+	bubbles.length = 0;
+	c = 0;
+	document.getElementById('div_counter').innerHTML = c;
+}
+	
+function setup(){
+	bubbles[0] = new Bubble();
+	createCanvas(1300, 640);
+}
+function draw(){
+	background(0);
+	for(let i=0;i<bubbles.length;i++){
+		bubbles[i].show();
+		bubbles[i].move();
+	}
+}
+function mouseDragged(){
+	bubbles.push(new Bubble(mouseX, mouseY));
+	document.getElementById('div_counter').innerHTML = c;
+	c += 1;
+}
+class Bubble {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+		this.r = random(10, 100);
+		this.colR = random(0, 255);
+		this.colG = random(0, 255);
+		this.colB = random(0, 255);
+	}
+	move() {
+		this.x = this.x + random(-5, 5);
+		this.y = this.y + random(-5, 5);
+		if (color ==true){
+			this.colR = random(0, 255);
+			this.colG = random(0, 255);
+			this.colB = random(0, 255);
+		}
+		if (size == true){
+			this.r = random(10, 100);
+		}
+	}
+	show() {
+		stroke(this.colR, this.colG, this.colB);
+		strokeWeight(4);
+		if (Fill == true){
+			fill(this.colR, this.colG, this.colB);
+		}
+		else {
+			noFill();
+		}
+		ellipse(this.x, this.y, this.r);
+	}
+}
+</script>
+</html>
